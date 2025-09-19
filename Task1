@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: const BidPage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class BidPage extends StatefulWidget {
+  const BidPage({super.key});
+
+  @override
+  State<BidPage> createState() => _BidPageState();
+}
+
+class _BidPageState extends State<BidPage> {
+  int bid = 100;
+
+  void increaseBid() {
+    setState(() {
+      bid += 50;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Bid Page"),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text("Your Maximum Bid:"),
+            Text(
+              "\$$bid",
+              style: const TextStyle(fontSize: 40, color: Colors.green),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: increaseBid,
+              child: const Text("Increase Bid"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
