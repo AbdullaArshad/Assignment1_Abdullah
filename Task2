@@ -1,0 +1,70 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(title: const Text("Results")),
+        body: const ResultWidget(),
+      ),
+    );
+  }
+}
+
+class ResultWidget extends StatefulWidget {
+  const ResultWidget({super.key});
+
+  @override
+  State<ResultWidget> createState() => _ResultWidgetState();
+}
+
+class _ResultWidgetState extends State<ResultWidget> {
+  String result = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Example: hardcoded numbers, you can replace with TextFields
+    List<int> numbers = [2, 5, 8, 3, 6];
+
+    int evenSum = 0, oddSum = 0;
+    for (int num in numbers) {
+      if (num % 2 == 0) {
+        evenSum += num;
+      } else {
+        oddSum += num;
+      }
+    }
+
+    int largest = numbers.reduce((a, b) => a > b ? a : b);
+    int smallest = numbers.reduce((a, b) => a < b ? a : b);
+
+    result = """
+    --- Results ---
+    Sum of Even numbers: $evenSum
+    Sum of Odd numbers: $oddSum
+    Largest Number: $largest
+    Smallest Number: $smallest
+    """;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        result,
+        style: const TextStyle(fontSize: 18),
+        textAlign: TextAlign.center,
+      ),
+    );
+  }
+}
